@@ -7,26 +7,8 @@ body{
     height: 900px;
     margin: auto;
 
-    display: grid;
-    grid-template-columns: auto auto auto;
-    grid-template-rows: auto auto auto;
     
-    align-content: space-around;
-    justify-content: space-around;
 
     border: white 2px solid;
 }
 
-.square{
-    background-color: #9070fc;
-    align-self: center;
-    justify-self: center;
-    --size: 250px;
-    width: var(--size);
-    height:var(--size);
-}
-
-.square:nth-child(even){
-    background-color: #c0b9ff;
-    --size: 200px;
-}

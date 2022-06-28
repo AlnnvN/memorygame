@@ -54,8 +54,32 @@ body{
     color:var(--white1);
 }
 
+.square{
+    background-color: #9070fc;
+    align-self: center;
+    justify-self: center;
+    --size: 25px;
+    width: var(--size);
+    height:var(--size);
+    
+}
+
+.square:nth-child(even){
+    background-color: white;
+    --size: 15px;
+}
+
 #icone-container{
-    position: relative;
-    height: 100px;
-    width: 100px;
+    --size:100px;
+    height: var(--size);
+    width: var(--size);
+    min-width: var(--size);
+    min-height: var(--size);
+
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    
+    align-content: space-around;
+    justify-content: space-around;
 } 
