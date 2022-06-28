@@ -41,7 +41,7 @@ body{
 
 .title{
     font-size: 65px;
-    margin-left: 10px;
+    margin-left: 15px;
     
 }
 
@@ -67,7 +67,15 @@ body{
 .square:nth-child(even){
     background-color: white;
     --size: 15px;
+    width: var(--size);
+    height:var(--size);
 }
+
+.square:nth-child(2){align-self:flex-start;}
+.square:nth-child(4){justify-self: flex-start;}
+.square:nth-child(6){justify-self: flex-end;}
+.square:nth-child(8){align-self:flex-end;}
+
 
 #icone-container{
     --size:100px;
