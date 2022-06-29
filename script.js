@@ -1,13 +1,54 @@
 const gameContainer = document.getElementById("game-container");
 const images = document.getElementById("images").children;
+const sndBtn = document.getElementById("snd-btn");
+const resetBtn = document.getElementById("reset-btn");
 
+var song = new Audio('./assets/musica do jogo da memoria.mp3');
 var score = 0;
-
 var isFirstTime = true;
+
+LoadIcons();
 LoadSquares();
 ResetGame();
 
+
 //FUNCTIONS
+function LoadIcons(){
+    let soundIcon = document.getElementById("sound");
+    let mutedIcon = document.getElementById("muted");
+    let iconContainer = document.getElementById("icons");
+    let alternateCounter = 0;
+
+    soundIcon.style.display = "none";
+    mutedIcon.style.display = "flex"
+    sndBtn.appendChild(mutedIcon);
+
+    sndBtn.addEventListener('click',()=>{
+        if(alternateCounter === 0)
+        {
+            song.play();
+        }
+
+        if(alternateCounter%2 === 0){
+            mutedIcon.style.display = "none";
+            sndBtn.appendChild(soundIcon);
+            soundIcon.style.display = "flex"
+            iconContainer.appendChild(mutedIcon);
+            song.play();
+        }
+
+        console.log(alternateCounter%2);
+        if (alternateCounter%2 === 1) {
+            mutedIcon.style.display = "flex";
+            sndBtn.appendChild(mutedIcon);
+            soundIcon.style.display = "none"
+            iconContainer.appendChild(soundIcon);
+            song.pause();
+        }
+        
+        alternateCounter++;
+    })
+}
 
 function LoadSquares (){
    
@@ -33,7 +74,6 @@ function GameLogic(){
     {
         for (let i = 0; i < getSquareArray().length; i++) {
             getSquare(i).addEventListener('click',() => addChoice(getSquare(i)));
-            console.log("adding event listener");
         }
     }
     
@@ -131,8 +171,9 @@ function ResetGame(){
 
     }
 }
-//aux functions
 
+
+//aux functions
 function getSquare(index){
     return gameContainer.children[index].firstElementChild;
 }

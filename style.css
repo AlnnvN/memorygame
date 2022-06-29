@@ -13,8 +13,6 @@
 body{
     font-family:var(--font);
     background-color: var(--black1);
-
-    
 }
 
 #background-div{
@@ -42,10 +40,23 @@ body{
     min-width: none;
 }
 
+#title-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: auto;
+}
+
 .title{
     font-size: 65px;
     margin-left: 15px;
-    
+
+    user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 #title1{
@@ -64,6 +75,8 @@ body{
     --size: 25px;
     width: var(--size);
     height:var(--size);
+    user-select: none;
+    -webkit-user-drag: none;
     
 }
 
@@ -164,9 +177,71 @@ body{
 
     user-select: none;
     -webkit-user-drag: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 .image:hover{
     
     filter:hue-rotate(220deg);
 }
+
+.btn{
+    background-color: #9070fc;
+    --s: 65px;
+    height: var(--s);
+    width: var(--s);
+    min-height: var(--s);
+    min-width: var(--s);
+    max-height: var(--s);
+    max-width: var(--s);
+    
+    
+
+    z-index: 0;
+    
+    transition-property: background-color;
+    transition-duration: 0.2s;
+
+    display: flex;
+   
+    align-items: center;
+    justify-items: center;
+    
+   
+    
+}
+.btn:hover{
+    background-color: #453d6a;
+    --s:70px;
+}
+
+#snd-btn{
+    --l:395px;
+    margin: var(--l);
+}
+#snd-btn:hover{
+    --l: calc(395px - 2.5px);
+}
+
+#reset-btn{
+    --r:395px;
+    
+    margin: var(--r);
+}
+
+#reset-btn:hover{
+    --r:calc(395px - 2.5px);
+}
+
+.icon{
+    width: 80%;
+    height: 80%;
+
+    margin-left: 10%;
+
+    transition-property: filter;
+    transition-duration: 0.2s;
+}
+
