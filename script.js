@@ -4,9 +4,7 @@ const images = document.getElementById("images").children;
 var score = 0;
 
 LoadSquares();
-LinkImages();
-GameLogic();
-
+ResetGame();
 
 //FUNCTIONS
 
@@ -32,9 +30,6 @@ function GameLogic(){
     for (let i = 0; i < getSquareArray().length; i++) {
         
         getSquare(i).addEventListener('click',() => addChoice(getSquare(i)))
-
-        //sqr = getSquare(i);
-        //getSquare(i).onclick = addChoice;
     }
 
     function addChoice(sqr)
@@ -43,13 +38,13 @@ function GameLogic(){
 
         if(choices[0] === undefined)
         {
-            if(readyToAdd && img.className !== "image guessed"){
+            if(readyToAdd && img.className !== "image clone guessed" && img.className !== "image guessed"){
                 add();
             }
         }
         else
         {
-            if(readyToAdd && choices[0].parentElement != sqr && img.className !== "image guessed"){
+            if(readyToAdd && choices[0].parentElement != sqr && img.className !== "image guessed" && img.className !== "image clone guessed"){
                 add();
             }
         }
@@ -95,17 +90,44 @@ function LinkImages(){
     let sqr = getSquareArray();
     
     for (let i = 0; i < 6; i++) {
-        let imgarr = [images[0],images[0].cloneNode(true)];
+        let clone = images[0].cloneNode(true);
+        clone.classList.add("clone");
+        let imgarr = [images[0],clone];
         for (let b = 0; b < 2; b++) {
             let random = getRandomInt(0,sqr.length);
             sqr[random].appendChild(imgarr[b]);
             sqr.splice(random,1);
         }
     }
-    
-
 }
 
+function ResetGame(){
+    hideAllImages();
+
+    LinkImages();
+    GameLogic();
+
+    function hideAllImages()
+    {
+        let imagecontainer = document.getElementById("images");
+
+        document.querySelectorAll('.clone').forEach(img => {
+            img.remove();
+        });
+
+        document.querySelectorAll('.guessed').forEach(img => {
+            img.classList.remove('guessed');
+        });
+
+        let placedimages = document.querySelectorAll(".image");
+        
+        placedimages.forEach(element => {
+            element.style.display = "none";
+            imagecontainer.appendChild(element);
+        });
+
+    }
+}
 //aux functions
 
 function getSquare(index){
