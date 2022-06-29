@@ -1,3 +1,3 @@
 # memorygame
-simple memory game
+simple memory game using minecraft paintings
 https://alnnvn.github.io/memorygame/
