@@ -39,6 +39,7 @@ body{
 #hdr{
     margin-top:25px;
     max-height: 100px;
+    min-width: none;
 }
 
 .title{
@@ -106,8 +107,8 @@ body{
     /* column-gap: var(--gap);
     row-gap: var(--gap); */
     
-    align-content: space-around;
-    justify-content: space-around;
+    align-content: space-between;
+    justify-content: space-between;
 
     margin-top: 100px;
     
@@ -153,3 +154,16 @@ body{
 
 }
 
+.image{
+    width:100%;
+    height:100%;
+    filter:hue-rotate(210deg);
+    transition-property: filter;
+    transition-duration: 0.2s;
+    display: none;
+}
+
+.image:hover{
+    
+    filter:hue-rotate(220deg);
+}
