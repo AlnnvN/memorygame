@@ -14,40 +14,55 @@ ResetGame();
 
 //FUNCTIONS
 function LoadIcons(){
+    let restartIcon = document.getElementById("restart");
     let soundIcon = document.getElementById("sound");
     let mutedIcon = document.getElementById("muted");
     let iconContainer = document.getElementById("icons");
     let alternateCounter = 0;
 
-    soundIcon.style.display = "none";
-    mutedIcon.style.display = "flex"
-    sndBtn.appendChild(mutedIcon);
+    loadSoundBtn();
 
-    sndBtn.addEventListener('click',()=>{
-        if(alternateCounter === 0)
-        {
-            song.play();
-        }
+    loadResetBtn();
 
-        if(alternateCounter%2 === 0){
-            mutedIcon.style.display = "none";
-            sndBtn.appendChild(soundIcon);
-            soundIcon.style.display = "flex"
-            iconContainer.appendChild(mutedIcon);
-            song.play();
-        }
+    //functions
 
-        console.log(alternateCounter%2);
-        if (alternateCounter%2 === 1) {
-            mutedIcon.style.display = "flex";
-            sndBtn.appendChild(mutedIcon);
-            soundIcon.style.display = "none"
-            iconContainer.appendChild(soundIcon);
-            song.pause();
-        }
-        
-        alternateCounter++;
-    })
+    function loadResetBtn() {
+        resetBtn.appendChild(restartIcon);
+
+        resetBtn.addEventListener('click', () => {
+            ResetGame();
+        });
+    }
+
+    function loadSoundBtn() {
+        soundIcon.style.display = "none";
+        mutedIcon.style.display = "flex";
+        sndBtn.appendChild(mutedIcon);
+
+        sndBtn.addEventListener('click', () => {
+            if (alternateCounter === 0) {
+                song.play();
+            }
+
+            if (alternateCounter % 2 === 0) {
+                mutedIcon.style.display = "none";
+                sndBtn.appendChild(soundIcon);
+                soundIcon.style.display = "flex";
+                iconContainer.appendChild(mutedIcon);
+                song.play();
+            }
+
+            if (alternateCounter % 2 === 1) {
+                mutedIcon.style.display = "flex";
+                sndBtn.appendChild(mutedIcon);
+                soundIcon.style.display = "none";
+                iconContainer.appendChild(soundIcon);
+                song.pause();
+            }
+
+            alternateCounter++;
+        });
+    }
 }
 
 function LoadSquares (){
@@ -89,7 +104,6 @@ function GameLogic(){
         }
        
         if(choices[0] !== undefined && readyToAdd && choices[0].parentElement != sqr && isGuessed === false){
-            console.log(img.classList);
             add();
         }
 
@@ -144,6 +158,7 @@ function LinkImages(){
 }
 
 function ResetGame(){
+    score = 0;
     hideAllImages();
 
     LinkImages();

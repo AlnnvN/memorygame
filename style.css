@@ -245,3 +245,8 @@ body{
     transition-duration: 0.2s;
 }
 
+#restart{
+    width: 90%;
+    height: 90%;
+    margin-left:3px;
+}
