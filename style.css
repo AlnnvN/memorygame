@@ -6,6 +6,8 @@
     --purple2:#8D86C9;
     --purple3:#242038;
 
+    --square-size: 180px;
+
 }
 
 body{
@@ -54,7 +56,7 @@ body{
     color:var(--white1);
 }
 
-.square{
+.icon-square{
     background-color: #9070fc;
     align-self: center;
     justify-self: center;
@@ -64,9 +66,9 @@ body{
     
 }
 
-.square:nth-child(even){
+.icon-square:nth-child(even){
     background-color: white;
-    --size: 15px;
+    --size: 17.5px;
     width: var(--size);
     height:var(--size);
 }
@@ -91,3 +93,63 @@ body{
     align-content: space-around;
     justify-content: space-around;
 } 
+
+#game-container{
+    --gap: 60px;
+    display:grid;
+    /* 9.6vw 18.5vh */
+    grid-template-columns: repeat(4, min-content);
+    grid-template-rows: repeat(3, min-content);
+    
+    
+
+    /* column-gap: var(--gap);
+    row-gap: var(--gap); */
+    
+    align-content: space-around;
+    justify-content: space-around;
+
+    margin-top: 100px;
+    
+    --size-adjust: 100px;
+    --height: calc(calc(var(--square-size) * 3) + var(--size-adjust));
+    --width:calc(var(--height) + calc(var(--square-size) + var(--size-adjust)));
+    height: var(--height);
+    width: var(--width);
+    max-height: var(--height);
+    max-width: var(--width);
+    
+}
+
+.square-div{
+    display: block;
+    position: relative;
+}
+
+
+
+.square{
+    --test: 180px;
+    /* width: var(--square-size);
+    height: var(--square-size); */
+    
+    width: var(--test);
+    height: var(--test);
+    background-color: #8e81ff;
+    margin: 0px;
+    transition-property: background-color;
+    transition-duration: 0.2s;
+}
+
+.square:hover{
+    position:absolute;
+    --test2:200px;
+        width: var(--test2);
+    height: var(--test2);
+    margin-left: -5.5%;
+    margin-top: -55.5%;
+
+    background-color: #453d6a;
+
+}
+
