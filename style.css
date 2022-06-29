@@ -161,6 +161,9 @@ body{
     transition-property: filter;
     transition-duration: 0.2s;
     display:none;
+
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 .image:hover{
