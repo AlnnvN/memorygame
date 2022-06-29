@@ -160,7 +160,7 @@ body{
     filter:hue-rotate(210deg);
     transition-property: filter;
     transition-duration: 0.2s;
-    display: none;
+    /* display: none; */
 }
 
 .image:hover{
