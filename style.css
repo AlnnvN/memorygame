@@ -243,6 +243,14 @@ body{
 
     transition-property: filter;
     transition-duration: 0.2s;
+
+    user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    
+    pointer-events: none;
 }
 
 #restart{
