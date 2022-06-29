@@ -74,10 +74,10 @@ body{
     height:var(--size);
 }
 
-.square:nth-child(2){align-self:flex-start;}
-.square:nth-child(4){justify-self: flex-start;}
-.square:nth-child(6){justify-self: flex-end;}
-.square:nth-child(8){align-self:flex-end;}
+.icon-square:nth-child(2){align-self:flex-start;}
+.icon-square:nth-child(4){justify-self: flex-start;}
+.icon-square:nth-child(6){justify-self: flex-end;}
+.icon-square:nth-child(8){align-self:flex-end;}
 
 
 #icone-container{
@@ -160,7 +160,7 @@ body{
     filter:hue-rotate(210deg);
     transition-property: filter;
     transition-duration: 0.2s;
-    /* display: none; */
+    display:none;
 }
 
 .image:hover{
