@@ -3,6 +3,7 @@ const images = document.getElementById("images").children;
 
 var score = 0;
 
+var isFirstTime = true;
 LoadSquares();
 ResetGame();
 
@@ -27,32 +28,32 @@ function LoadSquares (){
 function GameLogic(){
     let choices = [];
     let readyToAdd = true;
-    for (let i = 0; i < getSquareArray().length; i++) {
-        
-        getSquare(i).addEventListener('click',() => addChoice(getSquare(i)))
+
+    if(isFirstTime)
+    {
+        for (let i = 0; i < getSquareArray().length; i++) {
+            getSquare(i).addEventListener('click',() => addChoice(getSquare(i)));
+            console.log("adding event listener");
+        }
     }
+    
 
     function addChoice(sqr)
     {
         let img = sqr.firstElementChild;
+        let isGuessed = img.classList.contains("guessed");
 
-        if(choices[0] === undefined)
+        if(choices[0] === undefined && readyToAdd && isGuessed === false)
         {
-            if(readyToAdd && img.className !== "image clone guessed" && img.className !== "image guessed"){
-                add();
-            }
+            add();    
         }
-        else
-        {
-            if(readyToAdd && choices[0].parentElement != sqr && img.className !== "image guessed" && img.className !== "image clone guessed"){
-                add();
-            }
+       
+        if(choices[0] !== undefined && readyToAdd && choices[0].parentElement != sqr && isGuessed === false){
+            console.log(img.classList);
+            add();
         }
-        
 
         function add() {
-            
-            console.log("showing image");
             img.style.display = "flex";
             choices.push(img);
             checkChoice();
@@ -67,8 +68,9 @@ function GameLogic(){
             readyToAdd = false;
             if(choices[0].getAttribute("src") === choices[1].getAttribute("src"))
             {
-                choices[0].classList.add("guessed");
-                choices[1].classList.add("guessed");
+            
+                for (let i = 0; i < 2; i++) {choices[i].classList.add("guessed");}
+
                 score++;
                 choices = [];
                 readyToAdd = true;
@@ -106,6 +108,7 @@ function ResetGame(){
 
     LinkImages();
     GameLogic();
+    isFirstTime = false;
 
     function hideAllImages()
     {
