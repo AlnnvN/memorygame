@@ -10,6 +10,7 @@ var score = 0;
 var userAttempts = 0;
 var choices = [];
 var isFirstTime = true;
+var readyToAdd = true;
 
 LoadIcons();
 LoadSquares();
@@ -34,7 +35,10 @@ function LoadIcons(){
         resetBtn.appendChild(restartIcon);
 
         resetBtn.addEventListener('click', () => {
-            ResetGame();
+            if(readyToAdd){
+                ResetGame();
+            }   
+            
         });
     }
 
@@ -87,8 +91,6 @@ function LoadSquares (){
 
 function GameLogic(){
     
-    let readyToAdd = true;
-
     if(isFirstTime)
     {
         scoreText.innerHTML = "00/06"
