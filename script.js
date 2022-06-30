@@ -2,9 +2,13 @@ const gameContainer = document.getElementById("game-container");
 const images = document.getElementById("images").children;
 const sndBtn = document.getElementById("snd-btn");
 const resetBtn = document.getElementById("reset-btn");
+const scoreText = document.getElementById("score-number");
+const attemptsText = document.getElementById("attempts-number");
 
 var song = new Audio('./assets/musica do jogo da memoria.mp3');
 var score = 0;
+var userAttempts = 0;
+
 var isFirstTime = true;
 
 LoadIcons();
@@ -87,6 +91,8 @@ function GameLogic(){
 
     if(isFirstTime)
     {
+        scoreText.innerHTML = "00/06"
+        userAttempts.innerHTML = "00";
         for (let i = 0; i < getSquareArray().length; i++) {
             getSquare(i).addEventListener('click',() => addChoice(getSquare(i)));
         }
@@ -116,30 +122,37 @@ function GameLogic(){
     
     function checkChoice()
     {
-        
         if(choices.length == 2)
         {
             readyToAdd = false;
+
             if(choices[0].getAttribute("src") === choices[1].getAttribute("src"))
             {
-            
                 for (let i = 0; i < 2; i++) {choices[i].classList.add("guessed");}
-
                 score++;
                 choices = [];
                 readyToAdd = true;
             }
             else{
-                setTimeout(hideImages,750);
+                setTimeout(()=>{
+                    choices[0].style.display = "none";
+                    choices[1].style.display = "none";  
+                    choices = [];
+                    readyToAdd = true;
+                    },750);
             }
-            function hideImages(){
-                choices[0].style.display = "none";
-                choices[1].style.display = "none";
-                choices = [];
-                readyToAdd = true;
-            }
+            userAttempts++;
+
+            updateGameStatus();
         }
     }
+}
+
+function updateGameStatus(){
+    scoreText.innerHTML = "0" + score + "/06";
+    if (userAttempts < 10) { attemptsText.innerHTML = "0" + userAttempts; }
+    else { attemptsText.innerHTML = userAttempts; }
+    return;
 }
 
 function LinkImages(){
@@ -158,7 +171,10 @@ function LinkImages(){
 }
 
 function ResetGame(){
+    userAttempts = 0;
     score = 0;
+
+    updateGameStatus();
     hideAllImages();
 
     LinkImages();
@@ -186,7 +202,6 @@ function ResetGame(){
 
     }
 }
-
 
 //aux functions
 function getSquare(index){
