@@ -8,7 +8,7 @@ const attemptsText = document.getElementById("attempts-number");
 var song = new Audio('./assets/musica do jogo da memoria.mp3');
 var score = 0;
 var userAttempts = 0;
-
+var choices = [];
 var isFirstTime = true;
 
 LoadIcons();
@@ -86,7 +86,7 @@ function LoadSquares (){
 }
 
 function GameLogic(){
-    let choices = [];
+    
     let readyToAdd = true;
 
     if(isFirstTime)
@@ -173,6 +173,7 @@ function LinkImages(){
 function ResetGame(){
     userAttempts = 0;
     score = 0;
+    choices = [];
 
     updateGameStatus();
     hideAllImages();
